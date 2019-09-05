@@ -18,8 +18,8 @@ with
   ),
   
   
-#Figure out the first date that each user enters the app
-
+/* Figure out the first date that each user enters the app */
+ 
   min_date_table as (
   
       select    email,
@@ -76,14 +76,18 @@ with
                       else 5
                       end as week
       from      weekly_cohorts
-      /*group by email and week so that if a user comes 2 times in week one, you only count that once*/
+    
+      /*Group by email and week so that if a user comes 2 times in week one, you only count that once*/
       group by  min_date,
                 week_cohort,
                 email,
                 week
       order by  email, min_date asc, week asc
       ),
+                        
       
+/* Group by week cohort and week and count the unique users that come back each week, from each cohort */
+   
   weekly_cohorts_by_week as (
   
       select    week_cohort,
@@ -95,5 +99,8 @@ with
                 
        
       )
-  select * from weekly_cohorts_by_week  
-  order by week_cohort desc, week asc
+                        
+                        
+  select      * 
+  from        weekly_cohorts_by_week  
+  order by    week_cohort desc, week asc
