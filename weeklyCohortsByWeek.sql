@@ -1,4 +1,4 @@
-/* Find everytime that each user changes the screen to get into the canvas */
+/* Find everytime that each user changes the screen to get into the canvas.. */
 
 with 
   
